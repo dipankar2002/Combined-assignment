@@ -17,6 +17,18 @@
 
 function getPrimesUpTo100() {
   // Your code here
+  let result = [];
+  for(let i = 2; i <= 100; i++) {
+    let flag = 1;
+    for(let k = 2; k < i; k++) {
+      if(i % k == 0) {
+        flag++;
+        break;
+      }
+    }
+    if(flag == 1) result.push(i);
+  }
+  return result;
 }
 
 module.exports = { getPrimesUpTo100 };

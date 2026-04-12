@@ -21,8 +21,11 @@
 
 function countOccurrences(arr) {
   // Your code here
+  let result = {};
+  arr.forEach(ele => {
+    result[ele] = ( result[ele] || 0 ) + 1;
+  });
+  return result;
 }
 
 module.exports = countOccurrences;
-
-

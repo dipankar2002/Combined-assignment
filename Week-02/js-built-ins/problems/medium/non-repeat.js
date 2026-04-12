@@ -22,5 +22,15 @@
 */
 function nonrepeat(str) {
   // Your code here
+  let obj = {};
+  for(let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    obj[ch] = ( obj[ch] || 0 ) + 1;
+  }
+  let keys = Object.keys(obj);
+  for(let key of keys) {
+    if(obj[key] == 1) return key;
+  }
+  return null;
 }
 module.exports = nonrepeat;

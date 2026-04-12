@@ -6,19 +6,39 @@
   Once you've implemented the logic, test your code by running
   - `npm run test-anagram`
 */
+
+function sortString(s) {
+  return s.toLowerCase().split('').sort().join('');
+}
+
+// This is a funnction to compaire two object.
+function isEqual(obj1, obj2) {
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if(keys1.length !== keys2.length) return false;
+
+  for(let key of keys1) {
+    if(obj1[key] !== obj2[key]) return false;
+  }
+  return true;
+}
+
+// using objects methode.
 function isAnagram(str1, str2) {
-
-  if (str1.length !== str2.length) {
-      return false;
+  if(str1.length !== str2.length) {
+    return false;
   }
-
-
-  function sortString(str) {
-      return str.toLowerCase().split('').sort().join('');
+  let obj1 = {};
+  let obj2 = {};
+  for(let i = 0; i < str1.length; i++) {
+    let char1 = str1[i].toLowerCase();
+    let char2 = str2[i].toLowerCase();
+    
+    obj1[char1] = (obj1[char1] || 0) + 1;
+    obj2[char2] = (obj2[char2] || 0) + 1;
   }
-
-
-  return sortString(str1) === sortString(str2);
+  return isEqual(obj1, obj2);
 }
 
 module.exports = isAnagram;

@@ -27,6 +27,11 @@
 
 function isPerfectNumber(num) {
   // Your code here
+  let sumOfDivisors = 0;
+  for(let i = 1; i < num; i++) {
+    if(num % i === 0) sumOfDivisors += i; 
+  }
+  return num === sumOfDivisors;
 }
 
 module.exports = { isPerfectNumber };

@@ -22,6 +22,23 @@
 */
 function compression(str) {
   // Your code here
+  if(str.length === 0) return "";
+  let result = "";
+  let currCh = "";
+  let count = 0;
+
+  for(let i = 0 ; i < str.length; i++) {
+    currCh = str[i];
+    count++;
+    if(currCh !== str[i+1]) {
+      result += currCh;
+      if(count > 1) {
+        result += count;
+      }
+      count = 0;
+    }
+  }
+  return result;
 }
 
 module.exports = compression;
