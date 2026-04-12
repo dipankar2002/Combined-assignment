@@ -4,11 +4,8 @@
 // It should go up as time goes by in intervals of 1 second 
 
 let counter = 0;
-
-
-const updateCounter = () => {
-  counter++;
+function printCounter() {
   console.log(counter);
-};
-
-setInterval(updateCounter, 1000);
+  counter++;
+}
+setInterval(printCounter, 1 * 1000);
