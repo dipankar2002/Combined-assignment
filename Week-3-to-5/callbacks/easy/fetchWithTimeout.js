@@ -1,16 +1,31 @@
-// Problem Description – fetchWithTimeout(url, ms, callback)
-//
-// You are required to write a function named fetchWithTimeout that accepts a URL,
-// a time limit in milliseconds, and a callback function.
-// The function attempts to fetch data from the given URL.
-// If the request completes within the specified time, the callback is invoked with
-// null as the first argument and the fetched data as the second argument.
-// If the operation exceeds the time limit, the callback is invoked with an Error
-// whose message is "Request Timed Out".
+// Problem Description – fetchWithTimeout(url, ms)
 
+// You are required to write a function named fetchWithTimeout that accepts a URL and a time limit in milliseconds. 
+// The function must return a Promise that attempts to fetch data from the given URL.
+// If the request completes within the specified time, the Promise resolves with the fetched data. 
+// If the operation exceeds the time limit, the Promise rejects with the message "Request Timed Out".
 
-function fetchWithTimeout(url, ms, callback) {
+function fetchWithTimeout(url, ms) {
+    const fetchData = fetch(url);
+    
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Request Timed Out");
+        }, ms);
+    })
 
+    return Promise.race([ fetchData, timeoutPromise ]);
 }
 
-module.exports = fetchWithTimeout;
+function fetchWithTimeoutClean(url, ms) {
+    const fetchData = fetch(url);
+    
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Request Timed Out");
+        }, ms);
+    })
+    return Promise.race([ fetchData, timeoutPromise ]);
+}
+
+module.exports = { fetchWithTimeout, fetchWithTimeoutClean };
