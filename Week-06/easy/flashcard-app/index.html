@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Learning App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Setup Screen -->
+        <div id="setupScreen" class="screen active">
+            <div class="setup-card">
+                <h1>🎓 Flashcard Learning App</h1>
+                <p class="subtitle">Select a topic and number of questions to get started</p>
+                
+                <div class="form-group">
+                    <label for="topicSelect">Select Topic:</label>
+                    <select id="topicSelect">
+                        <option value="">-- Choose a topic --</option>
+                        <option value="capitals">Capital Cities</option>
+                        <option value="math">Math Basics</option>
+                        <option value="science">Science Facts</option>
+                        <option value="history">History Facts</option>
+                        <option value="languages">Languages</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionCount">Number of Questions:</label>
+                    <div class="question-count-input">
+                        <button id="decreaseBtn" class="count-btn">−</button>
+                        <input type="number" id="questionCount" min="1" max="20" value="5" readonly>
+                        <button id="increaseBtn" class="count-btn">+</button>
+                    </div>
+                </div>
+
+                <button id="startBtn" class="btn btn-primary">Start Quiz</button>
+            </div>
+        </div>
+
+        <!-- Flashcard Screen -->
+        <div id="flashcardScreen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span class="current-card">Card <span id="currentCard">1</span> of <span id="totalCards">5</span></span>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                <button id="quitBtn" class="btn btn-secondary">Quit Quiz</button>
+            </div>
+
+            <div class="flashcard-container">
+                <div id="flashcard" class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <p id="questionText">Question</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <p id="answerText">Answer</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="flip-hint">Click card to reveal answer</p>
+            </div>
+
+            <div class="answer-buttons">
+                <button id="incorrectBtn" class="btn btn-incorrect">❌ Incorrect</button>
+                <button id="correctBtn" class="btn btn-correct">✓ Correct</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-card">
+                <h1>Quiz Complete!</h1>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="finalScore">15</span>
+                        <span class="score-label">out of</span>
+                        <span id="finalTotal">20</span>
+                    </div>
+                </div>
+                <div class="score-percentage">
+                    <p id="scorePercentage">75%</p>
+                    <p class="performance-message" id="performanceMessage">Great job!</p>
+                </div>
+
+                <div class="results-breakdown">
+                    <div class="result-item correct">
+                        <span class="result-icon">✓</span>
+                        <span class="result-text">Correct</span>
+                        <span class="result-count" id="correctCount">15</span>
+                    </div>
+                    <div class="result-item incorrect">
+                        <span class="result-icon">❌</span>
+                        <span class="result-text">Incorrect</span>
+                        <span class="result-count" id="incorrectCount">5</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="retryBtn" class="btn btn-primary">Retry</button>
+                    <button id="changeTopicBtn" class="btn btn-secondary">Change Topic</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
