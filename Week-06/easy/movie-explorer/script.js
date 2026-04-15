@@ -1,3 +1,4 @@
+// Replace with your own TMDB API key from https://www.themoviedb.org/settings/api
 const API_KEY = "YOUR_TMDB_API_KEY";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_BASE = "https://image.tmdb.org/t/p/w500";
@@ -72,9 +73,9 @@ function toggleSort() {
 function renderMovies(list) {
   movieGrid.innerHTML = list
     .map((m) => {
-      const poster = m.poster_path
-        ? `${IMG_BASE}${m.poster_path}`
-        : PLACEHOLDER_IMG;
+      const poster = escapeHtml(
+        m.poster_path ? `${IMG_BASE}${m.poster_path}` : PLACEHOLDER_IMG
+      );
       const rating = m.vote_average != null ? m.vote_average.toFixed(1) : "N/A";
       const overview = m.overview || "No overview available.";
 
