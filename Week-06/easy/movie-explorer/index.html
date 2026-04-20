@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <header class="hero">
+      <p class="kicker">Discover your next watch</p>
+      <h1>Movie Explorer</h1>
+      <p class="subtitle">
+        Pick a genre, decide how many movies you want, and instantly explore top picks in a streaming-style layout.
+      </p>
+    </header>
+
+    <main class="container">
+      <section class="controls" aria-label="Movie filters">
+        <div class="control-group source-group">
+          <label for="sourceSelect">Data Source</label>
+          <select id="sourceSelect" aria-label="Select data source">
+            <option value="yts">YTS (no key)</option>
+            <option value="tmdb">TMDB (API key required)</option>
+          </select>
+        </div>
+
+        <div class="control-group key-group">
+          <label for="apiKey">TMDB API Key</label>
+          <div class="key-row">
+            <input
+              id="apiKey"
+              type="password"
+              placeholder="Enter TMDB key if you use TMDB source"
+              autocomplete="off"
+            />
+            <button id="saveKeyBtn" type="button">Save Key</button>
+          </div>
+          <small>
+            Use YTS for a no-key option, or create a free key at
+            <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noreferrer"
+              >TMDB</a
+            >
+            for TMDB data.
+          </small>
+        </div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <label for="genreSelect">Genre</label>
+            <select id="genreSelect" aria-label="Select genre">
+              <option value="28">Action</option>
+              <option value="12">Adventure</option>
+              <option value="16">Animation</option>
+              <option value="35">Comedy</option>
+              <option value="80">Crime</option>
+              <option value="99">Documentary</option>
+              <option value="18">Drama</option>
+              <option value="10751">Family</option>
+              <option value="14">Fantasy</option>
+              <option value="36">History</option>
+              <option value="27">Horror</option>
+              <option value="10402">Music</option>
+              <option value="9648">Mystery</option>
+              <option value="10749">Romance</option>
+              <option value="878">Science Fiction</option>
+              <option value="53">Thriller</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="movieCount">Movies to show</label>
+            <input id="movieCount" type="number" min="1" max="20" value="8" />
+          </div>
+
+          <div class="control-group switch-group">
+            <span>Sort by Rating</span>
+            <label class="switch" for="sortToggle">
+              <input id="sortToggle" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <button id="fetchBtn" class="fetch-btn" type="button">Explore Movies</button>
+        </div>
+      </section>
+
+      <section class="status-wrap" aria-live="polite">
+        <p id="statusMessage" class="status"></p>
+      </section>
+
+      <section id="movieGrid" class="movie-grid" aria-label="Movie results"></section>
+    </main>
+
+    <template id="movieCardTemplate">
+      <article class="movie-card">
+        <img class="poster" alt="" loading="lazy" />
+        <div class="card-content">
+          <div class="title-row">
+            <h2 class="title"></h2>
+            <span class="rating"></span>
+          </div>
+          <p class="overview"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

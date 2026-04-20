@@ -1,0 +1,362 @@
+:root {
+  --bg: #06070a;
+  --surface: rgba(18, 22, 31, 0.9);
+  --surface-strong: #141b29;
+  --surface-soft: rgba(255, 255, 255, 0.06);
+  --text: #f5f7fb;
+  --text-muted: #b5bfd4;
+  --accent: #ff5f3d;
+  --accent-alt: #24d4a6;
+  --danger: #ff6f7f;
+  --ring: rgba(255, 95, 61, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  background:
+    radial-gradient(80rem 40rem at 110% -10%, rgba(36, 212, 166, 0.18), transparent 58%),
+    radial-gradient(60rem 30rem at -10% 5%, rgba(255, 95, 61, 0.2), transparent 55%),
+    linear-gradient(160deg, #05060b 0%, #090e1a 55%, #10192a 100%);
+  padding: 2rem 1.2rem 3rem;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+  opacity: 0.35;
+}
+
+.hero,
+.container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  margin-bottom: 1.5rem;
+  animation: reveal 0.65s ease forwards;
+}
+
+.kicker {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-alt);
+  font-weight: 700;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.03em;
+  font-size: clamp(2.6rem, 6vw, 4.3rem);
+  margin: 0.4rem 0 0;
+}
+
+.subtitle {
+  margin: 0.6rem 0 0;
+  color: var(--text-muted);
+  max-width: 65ch;
+  line-height: 1.55;
+}
+
+.controls {
+  background: linear-gradient(145deg, rgba(20, 27, 41, 0.95), rgba(13, 18, 30, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+  animation: reveal 0.75s 0.08s ease both;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr auto auto;
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.control-group label,
+.control-group span {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--surface-soft);
+  color: var(--text);
+  border-radius: 0.62rem;
+  padding: 0.72rem 0.8rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.key-group {
+  margin-bottom: 0.95rem;
+}
+
+.source-group {
+  margin-bottom: 0.95rem;
+}
+
+.key-group.hidden {
+  display: none;
+}
+
+.key-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+}
+
+.key-group small {
+  color: var(--text-muted);
+}
+
+.key-group a {
+  color: var(--accent-alt);
+}
+
+.fetch-btn,
+#saveKeyBtn {
+  border: 0;
+  color: #fff;
+  border-radius: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+#saveKeyBtn {
+  background: #26445e;
+  padding: 0.72rem 0.9rem;
+}
+
+.fetch-btn {
+  background: linear-gradient(120deg, var(--accent), #ff8a3d);
+  padding: 0.76rem 1rem;
+}
+
+.fetch-btn:hover,
+#saveKeyBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.switch-group {
+  align-self: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 180ms ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 180ms ease;
+}
+
+.switch input:checked + .slider {
+  background: var(--accent-alt);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+.status-wrap {
+  min-height: 2.1rem;
+}
+
+.status {
+  margin: 0.95rem 0 0.4rem;
+  color: var(--text-muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.success {
+  color: var(--accent-alt);
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.movie-card {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.95rem;
+  overflow: hidden;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(6px);
+  opacity: 0;
+  animation: cardIn 0.45s ease forwards;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: linear-gradient(145deg, #1f2533, #2d3850);
+}
+
+.card-content {
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.title-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.rating {
+  background: rgba(36, 212, 166, 0.16);
+  border: 1px solid rgba(36, 212, 166, 0.4);
+  color: var(--accent-alt);
+  border-radius: 999px;
+  padding: 0.2rem 0.48rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.overview {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 920px) {
+  .control-row {
+    grid-template-columns: 1fr 0.65fr;
+  }
+
+  .switch-group,
+  .fetch-btn {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    padding-inline: 0.8rem;
+  }
+
+  .controls {
+    padding: 0.9rem;
+  }
+
+  .key-row,
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .fetch-btn,
+  #saveKeyBtn {
+    width: 100%;
+  }
+}
