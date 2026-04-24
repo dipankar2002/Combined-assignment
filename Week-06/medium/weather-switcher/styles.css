@@ -1,0 +1,272 @@
+:root {
+  --bg-1: #6db8ff;
+  --bg-2: #2f73d7;
+  --card-bg: rgba(12, 25, 52, 0.56);
+  --text-main: #eff6ff;
+  --text-subtle: #d8e6ff;
+  --accent: #e8f2ff;
+  --shadow: 0 24px 60px rgba(3, 11, 24, 0.32);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.2), transparent 35%),
+    radial-gradient(circle at 84% 10%, rgba(255, 255, 255, 0.16), transparent 28%),
+    linear-gradient(140deg, var(--bg-1), var(--bg-2));
+  transition: background 500ms ease;
+}
+
+.app-shell {
+  width: min(920px, 92vw);
+  margin: 40px auto;
+  display: grid;
+  gap: 20px;
+}
+
+.heading-block {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+h1 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--text-subtle);
+}
+
+.control-panel,
+.weather-card {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.control-panel {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  padding: 20px;
+}
+
+.weather-form label,
+.color-row label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--accent);
+  color: #0b2d68;
+  transition: transform 160ms ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.override-panel {
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  padding-left: 14px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.weather-card {
+  padding: 24px;
+}
+
+.status {
+  margin: 0;
+  color: var(--text-subtle);
+}
+
+.weather-content.hidden {
+  display: none;
+}
+
+.city-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.city-row h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.city-row p {
+  margin: 0;
+  color: var(--text-subtle);
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0;
+}
+
+.icon {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 0;
+}
+
+.temperature {
+  margin: 0;
+  font-size: clamp(2.1rem, 7vw, 3.7rem);
+  font-weight: 700;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.meta-grid p {
+  margin: 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.meta-grid span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+  margin-bottom: 6px;
+}
+
+.theme-clear-day {
+  --bg-1: #8fd4ff;
+  --bg-2: #2f7cdb;
+}
+
+.theme-clear-night {
+  --bg-1: #1f2b56;
+  --bg-2: #060d20;
+}
+
+.theme-cloudy {
+  --bg-1: #90a6bf;
+  --bg-2: #40556e;
+}
+
+.theme-rainy {
+  --bg-1: #5c7d9f;
+  --bg-2: #243f5f;
+}
+
+.theme-storm {
+  --bg-1: #56607f;
+  --bg-2: #191d2f;
+}
+
+.theme-snow {
+  --bg-1: #c0d5e6;
+  --bg-2: #708ca6;
+}
+
+.theme-custom {
+  --card-bg: rgba(12, 25, 52, 0.52);
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    margin: 20px auto 28px;
+  }
+
+  .control-panel {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .override-panel {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-left: 0;
+    padding-top: 14px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

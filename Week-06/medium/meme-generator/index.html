@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel controls" aria-label="Meme controls">
+        <h1>Meme Forge</h1>
+        <p class="subtitle">Pick a template, style your text, then download your masterpiece.</p>
+
+        <label for="templateSelect">Template</label>
+        <select id="templateSelect" aria-label="Choose meme template"></select>
+
+        <label for="topText">Top Text</label>
+        <input id="topText" type="text" placeholder="WHEN CODE WORKS ON FIRST TRY" maxlength="100" />
+
+        <label for="bottomText">Bottom Text</label>
+        <input id="bottomText" type="text" placeholder="...BUT I DONT TRUST IT" maxlength="100" />
+
+        <div class="row two-col">
+          <div>
+            <label for="textColor">Text Color</label>
+            <input id="textColor" type="color" value="#ffffff" />
+          </div>
+          <div>
+            <label for="strokeColor">Stroke Color</label>
+            <input id="strokeColor" type="color" value="#000000" />
+          </div>
+        </div>
+
+        <div class="row two-col">
+          <div>
+            <label for="fontFamily">Font</label>
+            <select id="fontFamily">
+              <option value="'Bebas Neue', Impact, sans-serif">Bebas Neue</option>
+              <option value="Impact, Arial Black, sans-serif">Impact</option>
+              <option value="'Montserrat', Arial, sans-serif">Montserrat</option>
+              <option value="'Trebuchet MS', Arial, sans-serif">Trebuchet</option>
+            </select>
+          </div>
+          <div>
+            <label for="fontSize">Font Size</label>
+            <input id="fontSize" type="range" min="26" max="86" value="58" />
+          </div>
+        </div>
+
+        <div class="row toggle-group" role="group" aria-label="Text styles">
+          <label class="checkbox-label" for="isBold">
+            <input id="isBold" type="checkbox" checked />
+            Bold
+          </label>
+          <label class="checkbox-label" for="isItalic">
+            <input id="isItalic" type="checkbox" />
+            Italic
+          </label>
+          <label class="checkbox-label" for="isUppercase">
+            <input id="isUppercase" type="checkbox" checked />
+            Uppercase
+          </label>
+        </div>
+
+        <button id="downloadBtn" class="download-btn" type="button">Download Meme</button>
+      </section>
+
+      <section class="panel preview" aria-label="Meme preview">
+        <div class="canvas-wrap">
+          <canvas id="memeCanvas" width="1000" height="1000"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

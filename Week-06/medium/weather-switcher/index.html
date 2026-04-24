@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Theme Switcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-clear-day">
+    <main class="app-shell">
+      <header class="heading-block">
+        <p class="eyebrow">Live Dashboard</p>
+        <h1>Weather Theme Switcher</h1>
+        <p class="subtitle">Type a city and watch the dashboard react to the current sky.</p>
+      </header>
+
+      <section class="control-panel" aria-label="Weather controls">
+        <form id="weather-form" class="weather-form">
+          <label for="city-input">City</label>
+          <div class="input-row">
+            <input
+              id="city-input"
+              name="city"
+              type="text"
+              placeholder="Try Bengaluru, Tokyo, Nairobi..."
+              autocomplete="off"
+              required
+            />
+            <button type="submit">Check</button>
+          </div>
+        </form>
+
+        <div class="override-panel">
+          <label class="toggle-row" for="override-toggle">
+            <input type="checkbox" id="override-toggle" />
+            <span>Use custom background</span>
+          </label>
+          <div class="color-row">
+            <label for="override-color">Color</label>
+            <input id="override-color" type="color" value="#2c6be5" disabled />
+          </div>
+        </div>
+      </section>
+
+      <section class="weather-card" aria-live="polite" aria-atomic="true">
+        <p id="status" class="status">Search for a city to load weather.</p>
+
+        <div id="weather-content" class="weather-content hidden">
+          <div class="city-row">
+            <h2 id="city-name">-</h2>
+            <p id="condition-label">-</p>
+          </div>
+
+          <div class="metric-row">
+            <p id="weather-icon" class="icon" aria-hidden="true">☀️</p>
+            <p class="temperature"><span id="temp-value">--</span><span>°C</span></p>
+          </div>
+
+          <div class="meta-grid">
+            <p><span>Wind</span><strong id="wind-speed">-- km/h</strong></p>
+            <p><span>Local Time</span><strong id="local-time">--:--</strong></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
